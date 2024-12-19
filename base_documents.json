@@ -1,0 +1,41 @@
+[
+    {"content": "Alice comment: Alice reported fever and cough. She was confirmed to have Influenza and has taken acetaminophen and cough syrup previously. No significant medical history."},
+
+    {"content": "Bob comment: Bob complained of recurring headaches and was diagnosed with Migraine. He is currently on ibuprofen for pain relief. He has a history of stress-related episodes."},
+
+    {"content": "Charlie comment: Charlie experienced shortness of breath and was confirmed to have Asthma. He is prescribed an inhaler and has a family history of respiratory issues."},
+
+    {"content": "Diana comment: Diana reported fatigue and was diagnosed with Chronic Fatigue Syndrome. She has been advised to manage stress and improve sleep hygiene. No previous chronic illnesses noted."},
+
+    {"content": "Eve comment: Eve reported fever and cough, later diagnosed with Pneumonia. She completed a course of antibiotics and is advised to avoid cold environments. No known allergies."},
+
+    {"content": "Frank comment: Frank mentioned a runny nose but has no confirmed diagnosis yet. He has taken antihistamines for temporary relief. He has seasonal allergies."},
+
+    {"content": "Grace comment: Grace complained of nausea but has no confirmed diseases. She was prescribed antiemetics and advised to monitor her diet. No significant medical history."},
+
+    {"content": "Hank comment: Hank reported muscle pain and was diagnosed with a minor strain. He is using muscle relaxants and heating pads for recovery. No history of chronic illnesses."},
+
+    {"content": "Ivy comment: Ivy experienced a sore throat, suspected to be due to a viral infection. She was prescribed lozenges and is advised to stay hydrated. No confirmed diseases."},
+
+    {"content": "Jack comment: Jack reported loss of smell but has no confirmed diagnosis. He is under observation for potential sinus-related issues. No prior history of similar symptoms."},
+
+    {"content": "Karen comment: Karen has no symptoms or diseases currently reported. She is part of a family group with no significant medical history."},
+
+    {"content": "Leo comment: Leo reported occasional fatigue but has no confirmed diseases. He has been advised to increase physical activity and monitor for any changes."},
+
+    {"content": "Mona comment: Mona complained of occasional headaches but has no confirmed diagnosis. She was advised to track her symptoms and avoid triggers like caffeine."},
+
+    {"content": "Nina comment: Nina reported cough and fatigue but has no confirmed diseases. She has been prescribed rest and hydration for symptom management."},
+
+    {"content": "Oscar comment: Oscar has no symptoms but mentioned a family history of bronchitis. He is advised to monitor for respiratory issues."},
+
+    {"content": "Paul comment: Paul has no symptoms currently reported but has a family history of asthma. He has been advised to avoid exposure to allergens."},
+
+    {"content": "Quinn comment: Quinn complained of runny nose and sore throat. No confirmed diagnosis yet. He is using over-the-counter medications for relief."},
+
+    {"content": "Rita comment: Rita reported muscle pain after physical activity. No confirmed diseases, and she is advised to rest and hydrate."},
+
+    {"content": "Sam comment: Sam experienced mild fatigue and sore throat. No confirmed diseases yet, but he has been advised to monitor his symptoms."},
+
+    {"content": "Tina comment: Tina reported nausea after meals. No confirmed diagnosis yet. She is advised to monitor her diet and symptoms."}
+]
