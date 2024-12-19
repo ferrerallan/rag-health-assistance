@@ -1,166 +1,148 @@
-// Create investors (Person)
+// Create people (Person)
 CREATE (:Person {name: 'Alice', age: 35}),
        (:Person {name: 'Bob', age: 40}),
        (:Person {name: 'Charlie', age: 28}),
        (:Person {name: 'Diana', age: 30}),
-       (:Person {name: 'Eve', age: 50});
+       (:Person {name: 'Eve', age: 50}),
+       (:Person {name: 'Frank', age: 55}),
+       (:Person {name: 'Grace', age: 25}),
+       (:Person {name: 'Hank', age: 60}),
+       (:Person {name: 'Ivy', age: 32}),
+       (:Person {name: 'Jack', age: 45}),
+       (:Person {name: 'Karen', age: 29}),
+       (:Person {name: 'Leo', age: 48}),
+       (:Person {name: 'Mona', age: 22}),
+       (:Person {name: 'Nina', age: 38}),
+       (:Person {name: 'Oscar', age: 52}),
+       (:Person {name: 'Paul', age: 34}),
+       (:Person {name: 'Quinn', age: 27}),
+       (:Person {name: 'Rita', age: 49}),
+       (:Person {name: 'Sam', age: 36}),
+       (:Person {name: 'Tina', age: 24});
 
-// Create assets (Asset)
-CREATE (:Asset {name: 'PETR4', type: 'Stock'}),
-       (:Asset {name: 'Bitcoin', type: 'Cryptocurrency'}),
-       (:Asset {name: 'HGLG11', type: 'Real Estate Fund'}),
-       (:Asset {name: 'Treasury Selic', type: 'Fixed Income'}),
-       (:Asset {name: 'Ethereum', type: 'Cryptocurrency'}),
-       (:Asset {name: 'ABEV3', type: 'Stock'}),
-       (:Asset {name: 'SHFI11', type: 'Real Estate Fund'}),
-       (:Asset {name: 'CDB High Yield', type: 'Fixed Income'});
+// Create symptoms (Symptom)
+CREATE (:Symptom {name: 'Fever'}),
+       (:Symptom {name: 'Cough'}),
+       (:Symptom {name: 'Fatigue'}),
+       (:Symptom {name: 'Headache'}),
+       (:Symptom {name: 'Sore Throat'}),
+       (:Symptom {name: 'Shortness of Breath'}),
+       (:Symptom {name: 'Muscle Pain'}),
+       (:Symptom {name: 'Runny Nose'}),
+       (:Symptom {name: 'Nausea'}),
+       (:Symptom {name: 'Loss of Smell'});
 
-// Create categories (Category)
-CREATE (:Category {name: 'Stocks'}),
-       (:Category {name: 'Cryptocurrencies'}),
-       (:Category {name: 'Real Estate Funds'}),
-       (:Category {name: 'Fixed Income'});
+// Create diseases (Disease)
+CREATE (:Disease {name: 'Influenza'}),
+       (:Disease {name: 'Migraine'}),
+       (:Disease {name: 'Asthma'}),
+       (:Disease {name: 'Chronic Fatigue Syndrome'}),
+       (:Disease {name: 'Common Cold'}),
+       (:Disease {name: 'Bronchitis'}),
+       (:Disease {name: 'Pneumonia'});
 
-// Link assets to categories (BELONGS_TO)
-MATCH (a:Asset {name: 'PETR4'}), (c:Category {name: 'Stocks'})
-CREATE (a)-[:BELONGS_TO]->(c);
+// Link symptoms to diseases (CAUSES)
+MATCH (s:Symptom {name: 'Fever'}), (d:Disease {name: 'Influenza'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'Bitcoin'}), (c:Category {name: 'Cryptocurrencies'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Cough'}), (d:Disease {name: 'Influenza'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'HGLG11'}), (c:Category {name: 'Real Estate Funds'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Fatigue'}), (d:Disease {name: 'Influenza'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'Treasury Selic'}), (c:Category {name: 'Fixed Income'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Headache'}), (d:Disease {name: 'Migraine'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'Ethereum'}), (c:Category {name: 'Cryptocurrencies'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Shortness of Breath'}), (d:Disease {name: 'Asthma'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'ABEV3'}), (c:Category {name: 'Stocks'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Fatigue'}), (d:Disease {name: 'Chronic Fatigue Syndrome'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'SHFI11'}), (c:Category {name: 'Real Estate Funds'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Runny Nose'}), (d:Disease {name: 'Common Cold'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (a:Asset {name: 'CDB High Yield'}), (c:Category {name: 'Fixed Income'})
-CREATE (a)-[:BELONGS_TO]->(c);
+MATCH (s:Symptom {name: 'Cough'}), (d:Disease {name: 'Bronchitis'})
+CREATE (s)-[:CAUSES]->(d);
 
-// Create brokers (Broker)
-CREATE (:Broker {name: 'XP Investments'}),
-       (:Broker {name: 'Binance'}),
-       (:Broker {name: 'Nubank Investments'}),
-       (:Broker {name: 'Inter Investments'}),
-       (:Broker {name: 'Coinbase'});
+MATCH (s:Symptom {name: 'Fever'}), (d:Disease {name: 'Pneumonia'})
+CREATE (s)-[:CAUSES]->(d);
 
-// Link brokers to assets (OFFERS)
-MATCH (b:Broker {name: 'XP Investments'}), (a:Asset {name: 'PETR4'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (s:Symptom {name: 'Shortness of Breath'}), (d:Disease {name: 'Pneumonia'})
+CREATE (s)-[:CAUSES]->(d);
 
-MATCH (b:Broker {name: 'XP Investments'}), (a:Asset {name: 'HGLG11'})
-CREATE (b)-[:OFFERS]->(a);
+// Link people to symptoms they have (HAS_SYMPTOM)
+MATCH (p:Person {name: 'Alice'}), (s:Symptom {name: 'Fever'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (b:Broker {name: 'Binance'}), (a:Asset {name: 'Bitcoin'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (p:Person {name: 'Alice'}), (s:Symptom {name: 'Cough'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (b:Broker {name: 'Nubank Investments'}), (a:Asset {name: 'Treasury Selic'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (p:Person {name: 'Bob'}), (s:Symptom {name: 'Headache'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (b:Broker {name: 'Coinbase'}), (a:Asset {name: 'Ethereum'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (p:Person {name: 'Charlie'}), (s:Symptom {name: 'Shortness of Breath'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (b:Broker {name: 'Inter Investments'}), (a:Asset {name: 'ABEV3'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (p:Person {name: 'Diana'}), (s:Symptom {name: 'Fatigue'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (b:Broker {name: 'Inter Investments'}), (a:Asset {name: 'SHFI11'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (p:Person {name: 'Eve'}), (s:Symptom {name: 'Cough'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (b:Broker {name: 'XP Investments'}), (a:Asset {name: 'CDB High Yield'})
-CREATE (b)-[:OFFERS]->(a);
+MATCH (p:Person {name: 'Eve'}), (s:Symptom {name: 'Fever'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-// Create investor profiles (Profile)
-CREATE (:Profile {name: 'Aggressive'}),
-       (:Profile {name: 'Moderate'}),
-       (:Profile {name: 'Conservative'});
+MATCH (p:Person {name: 'Frank'}), (s:Symptom {name: 'Runny Nose'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-// Assign profiles to investors (HAS_PROFILE)
-MATCH (p:Person {name: 'Alice'}), (pr:Profile {name: 'Aggressive'})
-CREATE (p)-[:HAS_PROFILE]->(pr);
+MATCH (p:Person {name: 'Grace'}), (s:Symptom {name: 'Nausea'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (p:Person {name: 'Bob'}), (pr:Profile {name: 'Moderate'})
-CREATE (p)-[:HAS_PROFILE]->(pr);
+MATCH (p:Person {name: 'Hank'}), (s:Symptom {name: 'Muscle Pain'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (p:Person {name: 'Charlie'}), (pr:Profile {name: 'Conservative'})
-CREATE (p)-[:HAS_PROFILE]->(pr);
+MATCH (p:Person {name: 'Ivy'}), (s:Symptom {name: 'Sore Throat'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (p:Person {name: 'Diana'}), (pr:Profile {name: 'Aggressive'})
-CREATE (p)-[:HAS_PROFILE]->(pr);
+MATCH (p:Person {name: 'Jack'}), (s:Symptom {name: 'Loss of Smell'})
+CREATE (p)-[:HAS_SYMPTOM]->(s);
 
-MATCH (p:Person {name: 'Eve'}), (pr:Profile {name: 'Conservative'})
-CREATE (p)-[:HAS_PROFILE]->(pr);
+// Link people to confirmed diseases (CONFIRMED)
+MATCH (p:Person {name: 'Alice'}), (d:Disease {name: 'Influenza'})
+CREATE (p)-[:CONFIRMED]->(d);
 
-// Link investors to assets they invested in (INVESTED_IN)
-MATCH (p:Person {name: 'Alice'}), (a:Asset {name: 'Bitcoin'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p:Person {name: 'Bob'}), (d:Disease {name: 'Migraine'})
+CREATE (p)-[:CONFIRMED]->(d);
 
-MATCH (p:Person {name: 'Alice'}), (a:Asset {name: 'PETR4'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p:Person {name: 'Charlie'}), (d:Disease {name: 'Asthma'})
+CREATE (p)-[:CONFIRMED]->(d);
 
-MATCH (p:Person {name: 'Bob'}), (a:Asset {name: 'HGLG11'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p:Person {name: 'Diana'}), (d:Disease {name: 'Chronic Fatigue Syndrome'})
+CREATE (p)-[:CONFIRMED]->(d);
 
-MATCH (p:Person {name: 'Charlie'}), (a:Asset {name: 'Treasury Selic'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p:Person {name: 'Eve'}), (d:Disease {name: 'Pneumonia'})
+CREATE (p)-[:CONFIRMED]->(d);
 
-MATCH (p:Person {name: 'Diana'}), (a:Asset {name: 'Ethereum'})
-CREATE (p)-[:INVESTED_IN]->(a);
+// Create family relationships (IS_FAMILY)
+MATCH (p1:Person {name: 'Alice'}), (p2:Person {name: 'Bob'})
+CREATE (p1)-[:IS_FAMILY]->(p2);
 
-MATCH (p:Person {name: 'Eve'}), (a:Asset {name: 'CDB High Yield'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p1:Person {name: 'Diana'}), (p2:Person {name: 'Charlie'})
+CREATE (p1)-[:IS_FAMILY]->(p2);
 
-MATCH (p:Person {name: 'Alice'}), (a:Asset {name: 'ABEV3'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p1:Person {name: 'Eve'}), (p2:Person {name: 'Frank'})
+CREATE (p1)-[:IS_FAMILY]->(p2);
 
-MATCH (p:Person {name: 'Bob'}), (a:Asset {name: 'SHFI11'})
-CREATE (p)-[:INVESTED_IN]->(a);
+MATCH (p1:Person {name: 'Grace'}), (p2:Person {name: 'Hank'})
+CREATE (p1)-[:IS_FAMILY]->(p2);
 
-// Link investors to their favorite assets (FAVORITES)
-MATCH (p:Person {name: 'Charlie'}), (a:Asset {name: 'Bitcoin'})
-CREATE (p)-[:FAVORITES]->(a);
+MATCH (p1:Person {name: 'Ivy'}), (p2:Person {name: 'Jack'})
+CREATE (p1)-[:IS_FAMILY]->(p2);
 
-MATCH (p:Person {name: 'Charlie'}), (a:Asset {name: 'CDB High Yield'})
-CREATE (p)-[:FAVORITES]->(a);
-
-MATCH (p:Person {name: 'Diana'}), (a:Asset {name: 'Bitcoin'})
-CREATE (p)-[:FAVORITES]->(a);
-
-MATCH (p:Person {name: 'Eve'}), (a:Asset {name: 'Treasury Selic'})
-CREATE (p)-[:FAVORITES]->(a);
-
-MATCH (p:Person {name: 'Alice'}), (a:Asset {name: 'Ethereum'})
-CREATE (p)-[:FAVORITES]->(a);
-
-// Link investors to brokers they use (USES)
-MATCH (p:Person {name: 'Alice'}), (b:Broker {name: 'XP Investments'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Alice'}), (b:Broker {name: 'Binance'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Bob'}), (b:Broker {name: 'XP Investments'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Charlie'}), (b:Broker {name: 'Nubank Investments'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Diana'}), (b:Broker {name: 'Coinbase'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Eve'}), (b:Broker {name: 'Nubank Investments'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Bob'}), (b:Broker {name: 'Inter Investments'})
-CREATE (p)-[:USES]->(b);
-
-MATCH (p:Person {name: 'Alice'}), (b:Broker {name: 'Inter Investments'})
-CREATE (p)-[:USES]->(b);
+// Suggest diseases based on symptoms and relationships
+MATCH (p:Person)-[:HAS_SYMPTOM]->(s:Symptom)-[:CAUSES]->(d:Disease)
+WHERE NOT (p)-[:CONFIRMED]->(d)
+RETURN p.name AS Person, d.name AS SuggestedDisease, COLLECT(s.name) AS Symptoms
+ORDER BY Person, SuggestedDisease;
